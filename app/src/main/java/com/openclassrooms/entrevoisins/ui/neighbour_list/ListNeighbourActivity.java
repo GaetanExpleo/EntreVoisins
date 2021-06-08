@@ -5,7 +5,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.widget.Button;
 
 import com.openclassrooms.entrevoisins.R;
 
@@ -17,11 +16,11 @@ public class ListNeighbourActivity extends AppCompatActivity {
 
     // UI Components
     @BindView(R.id.tabs)
-    TabLayout mTabLayout;
+    TabLayout mTabLayout; //Tab contenant les 2 onglets
     @BindView(R.id.toolbar)
-    Toolbar mToolbar;
+    Toolbar mToolbar; //Toolbar avec le titre de l'application
     @BindView(R.id.container)
-    ViewPager mViewPager;
+    ViewPager mViewPager; //ViewPager contenant la liste des voisins
 
     ListNeighbourPagerAdapter mPagerAdapter;
 
@@ -32,11 +31,10 @@ public class ListNeighbourActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setSupportActionBar(mToolbar);
-        mPagerAdapter = new ListNeighbourPagerAdapter(getSupportFragmentManager());
+        mPagerAdapter = new ListNeighbourPagerAdapter(getSupportFragmentManager(),2);
         mViewPager.setAdapter(mPagerAdapter);
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
         mTabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
-
     }
 
     @OnClick(R.id.add_neighbour)

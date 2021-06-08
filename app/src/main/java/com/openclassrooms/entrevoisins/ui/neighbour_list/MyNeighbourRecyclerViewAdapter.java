@@ -1,5 +1,8 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +47,15 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
                 .load(neighbour.getAvatarUrl())
                 .apply(RequestOptions.circleCropTransform())
                 .into(holder.mNeighbourAvatar);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(v.getContext(),DetailNeighbourActivity.class );
+                myIntent.putExtra(DetailNeighbourActivity.NEIGHBOUR_ID_KEY,neighbour);
+                v.getContext().startActivity(myIntent);
+            }
+        });
 
         holder.mDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override

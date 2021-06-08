@@ -26,15 +26,21 @@ public class NeighbourFragment extends Fragment {
 
     private NeighbourApiService mApiService;
     private List<Neighbour> mNeighbours;
+    private static final String KEY_FAVORITE = "key_favorite";
+    private static boolean mIsFavorite;
     private RecyclerView mRecyclerView;
 
 
     /**
      * Create and return a new instance
+     *
      * @return @{@link NeighbourFragment}
      */
-    public static NeighbourFragment newInstance() {
+    public static NeighbourFragment newInstance(boolean isFavorite) {
         NeighbourFragment fragment = new NeighbourFragment();
+        Bundle myBundle = new Bundle();
+        myBundle.putBoolean(KEY_FAVORITE,isFavorite);
+        fragment.setArguments(myBundle);
         return fragment;
     }
 
@@ -42,6 +48,10 @@ public class NeighbourFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mApiService = DI.getNeighbourApiService();
+        Bundle myBundle = getArguments();
+        if (myBundle != null) {
+            mIsFavorite = myBundle.getBoolean(KEY_FAVORITE);
+        }
     }
 
     @Override
@@ -59,8 +69,15 @@ public class NeighbourFragment extends Fragment {
      * Init the List of neighbours
      */
     private void initList() {
-        mNeighbours = mApiService.getNeighbours();
-        mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours));
+        if (mIsFavorite) {
+            mNeighbours = mApiService.getFavoriteNeighbours();
+        } else {
+            mNeighbours = mApiService.getNeighbours();
+            mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours));
+        }
+        //System.out.println("page" + mPageOfTab);
+        //mNeighbours = mApiService.getNeighbours();
+        //mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours));
     }
 
     @Override
@@ -83,6 +100,7 @@ public class NeighbourFragment extends Fragment {
 
     /**
      * Fired if the user clicks on a delete button
+     *
      * @param event
      */
     @Subscribe

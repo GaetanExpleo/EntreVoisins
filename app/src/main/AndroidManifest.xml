@@ -12,6 +12,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.neighbour_list.DetailNeighbourActivity"
+            android:parentActivityName=".ui.neighbour_list.ListNeighbourActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label="">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.neighbour_list.ListNeighbourActivity"/>
+
+        </activity>
+
         <activity
             android:name=".ui.neighbour_list.AddNeighbourActivity"
             android:label="@string/activity_new_neighbour" />

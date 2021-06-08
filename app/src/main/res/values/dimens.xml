@@ -5,4 +5,9 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="appbar_padding_top">8dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="card_marginLeft">15dp</dimen>
+    <dimen name="card_radius">6dp</dimen>
+    <dimen name="card_margin">15dp</dimen>
+    <dimen name="card_padding">10dp</dimen>
+    <dimen name="view_height">1dp</dimen>
 </resources>
