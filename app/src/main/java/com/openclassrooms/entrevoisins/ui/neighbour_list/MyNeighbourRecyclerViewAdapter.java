@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
+import com.openclassrooms.entrevoisins.events.RemoveFavoriteNeighbourEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 
 import org.greenrobot.eventbus.EventBus;
@@ -27,8 +28,10 @@ import butterknife.ButterKnife;
 public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeighbourRecyclerViewAdapter.ViewHolder> {
 
     private final List<Neighbour> mNeighbours;
+    private final boolean mIsFavorite;
 
-    public MyNeighbourRecyclerViewAdapter(List<Neighbour> items) {
+    public MyNeighbourRecyclerViewAdapter(List<Neighbour> items,boolean isFavorite) {
+        this.mIsFavorite = isFavorite;
         mNeighbours = items;
     }
 
@@ -57,12 +60,27 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
             }
         });
 
-        holder.mDeleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EventBus.getDefault().post(new DeleteNeighbourEvent(neighbour));
-            }
-        });
+        if (mIsFavorite){
+            holder.mDeleteButton.setVisibility(View.GONE);
+            holder.mFavoriteButton.setVisibility(View.VISIBLE);
+            holder.mFavoriteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    EventBus.getDefault().post(new RemoveFavoriteNeighbourEvent(neighbour));
+                }
+            });
+        } else {
+            holder.mFavoriteButton.setVisibility(View.GONE);
+            holder.mDeleteButton.setVisibility(View.VISIBLE);
+            holder.mDeleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    EventBus.getDefault().post(new DeleteNeighbourEvent(neighbour));
+                }
+            });
+        }
+
+
     }
 
     @Override
@@ -77,6 +95,8 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
         public TextView mNeighbourName;
         @BindView(R.id.item_list_delete_button)
         public ImageButton mDeleteButton;
+        @BindView(R.id.item_list_favorite_button)
+        public ImageButton mFavoriteButton;
 
         public ViewHolder(View view) {
             super(view);
