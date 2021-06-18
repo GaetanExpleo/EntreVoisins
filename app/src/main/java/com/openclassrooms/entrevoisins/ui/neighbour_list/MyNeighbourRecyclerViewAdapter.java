@@ -14,9 +14,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.openclassrooms.entrevoisins.R;
+import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
 import com.openclassrooms.entrevoisins.events.RemoveFavoriteNeighbourEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
+import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -29,9 +31,10 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
 
     private final List<Neighbour> mNeighbours;
     private final boolean mIsFavorite;
+    private NeighbourApiService mApiService;
 
     public MyNeighbourRecyclerViewAdapter(List<Neighbour> items,boolean isFavorite) {
-        this.mIsFavorite = isFavorite;
+        mIsFavorite = isFavorite;
         mNeighbours = items;
     }
 
@@ -51,6 +54,7 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
                 .apply(RequestOptions.circleCropTransform())
                 .into(holder.mNeighbourAvatar);
 
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,13 +66,14 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
 
         if (mIsFavorite){
             holder.mDeleteButton.setVisibility(View.GONE);
-            holder.mFavoriteButton.setVisibility(View.VISIBLE);
-            holder.mFavoriteButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    EventBus.getDefault().post(new RemoveFavoriteNeighbourEvent(neighbour));
-                }
-            });
+            //holder.mFavoriteButton.setVisibility(View.VISIBLE);
+            //holder.mFavoriteButton.setOnClickListener(new View.OnClickListener() {
+            //    @Override
+            //    public void onClick(View v) {
+            //        neighbour.setFavoris(false);
+            //        EventBus.getDefault().post(new RemoveFavoriteNeighbourEvent(neighbour));
+            //    }
+            //});
         } else {
             holder.mFavoriteButton.setVisibility(View.GONE);
             holder.mDeleteButton.setVisibility(View.VISIBLE);
@@ -79,8 +84,6 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
                 }
             });
         }
-
-
     }
 
     @Override

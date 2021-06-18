@@ -20,7 +20,7 @@ public class ListNeighbourActivity extends AppCompatActivity {
     @BindView(R.id.toolbar)
     Toolbar mToolbar; //Toolbar avec le titre de l'application
     @BindView(R.id.container)
-    ViewPager mViewPager; //ViewPager contenant la liste des voisins
+    ViewPager mViewPager; //ViewPager contenant la la recyclerview des voisins
 
     ListNeighbourPagerAdapter mPagerAdapter;
 

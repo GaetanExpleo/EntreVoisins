@@ -107,8 +107,11 @@ public class NeighbourFragment extends Fragment {
         initList();
     }
 
-    public void onRemoveFavorite(RemoveFavoriteNeighbourEvent event){
-        mApiService.setFavoriteNeighbour(event.mNeighbour);
-        initList();
-    }
+
+    //@Subscribe
+    //public void onRemoveFavoriteNeighbour(RemoveFavoriteNeighbourEvent event){
+    //    mApiService.removeFavoriteNeighbour(event.mNeighbour);
+    //    initList();
+    //}
+
 }

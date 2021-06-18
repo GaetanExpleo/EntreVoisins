@@ -1,6 +1,7 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
 import android.content.Intent;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -30,8 +31,9 @@ public class DetailNeighbourActivity extends AppCompatActivity {
 
     //Views
     @BindView(R.id.activity_detail_toolbar) Toolbar mToolbar;
+    @BindView(R.id.activity_detail_collapsing) CollapsingToolbarLayout mCollapsingToolbarLayout;
     @BindView(R.id.activity_detail_avatar) ImageView mAvatar;
-    @BindView(R.id.activity_detail_name) TextView mName;
+    //@BindView(R.id.activity_detail_name) TextView mName;
     @BindView(R.id.activity_detail_card_name) TextView mCardName;
     @BindView(R.id.activity_detail_location) TextView mCardLocation;
     @BindView(R.id.activity_detail_phone_number) TextView mCardPhoneNumber;
@@ -67,7 +69,8 @@ public class DetailNeighbourActivity extends AppCompatActivity {
 
         //Writing information
         setSupportActionBar(mToolbar);
-        mName.setText(mNeighbour.getName());
+        mCollapsingToolbarLayout.setTitle(mNeighbour.getName());
+        //mName.setText(mNeighbour.getName());
         mCardName.setText(mNeighbour.getName());
         Glide.with(this)
                 .load(mNeighbour.getAvatarUrl())
