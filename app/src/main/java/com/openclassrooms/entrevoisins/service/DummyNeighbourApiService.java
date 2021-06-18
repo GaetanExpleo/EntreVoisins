@@ -44,15 +44,15 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
         }
     }
 
-    //@Override
-    //public void removeFavoriteNeighbour(Neighbour neighbour) {
-    //    for (Neighbour neighbour1 : favoriteNeighbours) {
-    //        if (neighbour1.equals(neighbour)){
-    //            favoriteNeighbours.remove(neighbour);
-    //            return;
-    //        }
-    //    }
-    //}
+    @Override
+    public void removeFavoriteNeighbour(Neighbour neighbour) {
+        for (Neighbour neighbour1 : favoriteNeighbours) {
+            if (neighbour1.equals(neighbour)){
+                favoriteNeighbours.remove(neighbour);
+                return;
+            }
+        }
+    }
 
     /**
      * {@inheritDoc}

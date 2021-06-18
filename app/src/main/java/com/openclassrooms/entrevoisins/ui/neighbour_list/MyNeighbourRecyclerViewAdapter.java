@@ -66,14 +66,14 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
 
         if (mIsFavorite){
             holder.mDeleteButton.setVisibility(View.GONE);
-            //holder.mFavoriteButton.setVisibility(View.VISIBLE);
-            //holder.mFavoriteButton.setOnClickListener(new View.OnClickListener() {
-            //    @Override
-            //    public void onClick(View v) {
-            //        neighbour.setFavoris(false);
-            //        EventBus.getDefault().post(new RemoveFavoriteNeighbourEvent(neighbour));
-            //    }
-            //});
+            holder.mFavoriteButton.setVisibility(View.VISIBLE);
+            holder.mFavoriteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    neighbour.setFavoris(false);
+                    EventBus.getDefault().post(new RemoveFavoriteNeighbourEvent(neighbour));
+                }
+            });
         } else {
             holder.mFavoriteButton.setVisibility(View.GONE);
             holder.mDeleteButton.setVisibility(View.VISIBLE);

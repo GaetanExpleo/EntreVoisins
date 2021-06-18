@@ -64,6 +64,7 @@ public class DetailNeighbourActivity extends AppCompatActivity {
                     fab.setImageResource(R.drawable.ic_star_yellow_24dp);
                 }
                 mApiService.setFavoriteNeighbour(mNeighbour);
+                mNeighbour.setFavoris(!mNeighbour.isFavoris());
             }
         });
 

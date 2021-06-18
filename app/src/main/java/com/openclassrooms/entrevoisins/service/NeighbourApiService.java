@@ -31,7 +31,7 @@ public interface NeighbourApiService {
      * Removes a neighbour to favorites
      * @param neighbour
      */
-    //void removeFavoriteNeighbour(Neighbour neighbour);
+    void removeFavoriteNeighbour(Neighbour neighbour);
 
     /**
      * Deletes a neighbour

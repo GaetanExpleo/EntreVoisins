@@ -3,6 +3,8 @@ package com.openclassrooms.entrevoisins.service;
 import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 
+import org.hamcrest.Matcher;
+import org.hamcrest.Matchers;
 import org.hamcrest.collection.IsIterableContainingInAnyOrder;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,6 +35,13 @@ public class NeighbourServiceTest {
         List<Neighbour> neighbours = service.getNeighbours();
         List<Neighbour> expectedNeighbours = DummyNeighbourGenerator.DUMMY_NEIGHBOURS;
         assertThat(neighbours, IsIterableContainingInAnyOrder.containsInAnyOrder(expectedNeighbours.toArray()));
+    }
+
+    @Test
+    public void addNeighboursWithSuccess(){
+        Neighbour neighbour = new Neighbour(13,"Olivier","http:test","Pas loin","0123456789","Je ne parle pas beaucoup de moi",false);
+        service.createNeighbour(neighbour);
+        assertTrue(service.getNeighbours().contains(neighbour));
     }
 
     @Test

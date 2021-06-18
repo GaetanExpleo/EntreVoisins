@@ -108,10 +108,10 @@ public class NeighbourFragment extends Fragment {
     }
 
 
-    //@Subscribe
-    //public void onRemoveFavoriteNeighbour(RemoveFavoriteNeighbourEvent event){
-    //    mApiService.removeFavoriteNeighbour(event.mNeighbour);
-    //    initList();
-    //}
+    @Subscribe
+    public void onRemoveFavoriteNeighbour(RemoveFavoriteNeighbourEvent event){
+        mApiService.removeFavoriteNeighbour(event.mNeighbour);
+        initList();
+    }
 
 }
