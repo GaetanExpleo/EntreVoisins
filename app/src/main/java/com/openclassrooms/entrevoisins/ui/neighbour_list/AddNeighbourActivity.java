@@ -25,18 +25,12 @@ import butterknife.OnClick;
 
 public class AddNeighbourActivity extends AppCompatActivity {
 
-    @BindView(R.id.avatar)
-    ImageView avatar;
-    @BindView(R.id.nameLyt)
-    TextInputLayout nameInput;
-    @BindView(R.id.phoneNumberLyt)
-    TextInputLayout phoneInput;
-    @BindView(R.id.addressLyt)
-    TextInputLayout addressInput;
-    @BindView(R.id.aboutMeLyt)
-    TextInputLayout aboutMeInput;
-    @BindView(R.id.create)
-    MaterialButton addButton;
+    @BindView(R.id.avatar) ImageView avatar;
+    @BindView(R.id.nameLyt) TextInputLayout nameInput;
+    @BindView(R.id.phoneNumberLyt) TextInputLayout phoneInput;
+    @BindView(R.id.addressLyt) TextInputLayout addressInput;
+    @BindView(R.id.aboutMeLyt) TextInputLayout aboutMeInput;
+    @BindView(R.id.create) MaterialButton addButton;
 
     private NeighbourApiService mApiService;
     private String mNeighbourImage;
@@ -87,7 +81,8 @@ public class AddNeighbourActivity extends AppCompatActivity {
                 mNeighbourImage,
                 addressInput.getEditText().getText().toString(),
                 phoneInput.getEditText().getText().toString(),
-                aboutMeInput.getEditText().getText().toString()
+                aboutMeInput.getEditText().getText().toString(),
+                false
         );
         mApiService.createNeighbour(neighbour);
         finish();
